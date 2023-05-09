@@ -20,6 +20,20 @@ jobs:
       - name: Create the JAR file with Maven
         run: mvn package -DskipTests
         
+        #Ga naar de andere applicatie die opgestart moet worden
+      - name: Checkout external repository
+        uses: actions/checkout@v2
+        with:
+          repository: Merel2002/EquiGameProject
+          ref: main
+          
+          #Start de applicatie op
+      - name: Build and run external application
+        run: |
+           cd EquiGameProject
+           mvn clean package
+           java -jar target/Test.jar
+        
       # Install newman
       - name: Install newman
         run: | 
