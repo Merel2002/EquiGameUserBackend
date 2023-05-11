@@ -2,6 +2,7 @@ package com.example.backend_Admin.services;
 
 import com.example.backend_Admin.models.DTOs.CreateRiderDTO;
 import com.example.backend_Admin.models.DTOs.EnrollmentDTO;
+import com.example.backend_Admin.models.DTOs.GameDTO;
 import com.example.backend_Admin.models.DTOs.RiderDTO;
 import com.example.backend_Admin.models.Rider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,15 @@ import java.util.Optional;
 @Service
 public class RiderService {
 
+
+    public List<RiderDTO> getAllRiders(){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:9090/api/riders";
+        List<RiderDTO> riders = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<RiderDTO>>() {})
+                .getBody();
+
+        return riders;
+    }
 
     public boolean addRider(CreateRiderDTO riderDTO) {
         RestTemplate restTemplate = new RestTemplate();

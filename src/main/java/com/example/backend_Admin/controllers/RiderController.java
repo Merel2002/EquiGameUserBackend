@@ -20,6 +20,11 @@ public class RiderController {
     private ValidationService validationService;
 
 
+    @GetMapping("/riders")
+    public ResponseEntity<List<RiderDTO>> getAllRiders(){
+        List<RiderDTO> riderDTOS = riderService.getAllRiders();
+        return ResponseEntity.ok(riderDTOS);
+    }
     @PostMapping("/addRider")
     public boolean addRider(@RequestBody CreateRiderDTO riderDTO){
         boolean valid1 = false;

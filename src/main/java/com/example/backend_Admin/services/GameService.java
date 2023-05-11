@@ -1,6 +1,7 @@
 package com.example.backend_Admin.services;
 
 import com.example.backend_Admin.models.DTOs.GameDTO;
+import com.example.backend_Admin.models.DTOs.RiderDTO;
 import com.example.backend_Admin.models.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -23,6 +24,15 @@ public class GameService {
                 .getBody();
 
         return games;
+    }
+
+    public GameDTO getGameById(int id) {
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:9090/api/gameid/"+ id;
+        GameDTO game = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<GameDTO>() {})
+                .getBody();
+
+        return game;
     }
 
 

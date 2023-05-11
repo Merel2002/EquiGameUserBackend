@@ -25,4 +25,16 @@ public class GameController {
         List<GameDTO> gameDTOS = gameService.getAllGamesFromAdminBackend();
         return ResponseEntity.ok(gameDTOS);
     }
+
+    @GetMapping("/gameid/{id}")
+    public ResponseEntity<GameDTO> getGameById(@PathVariable int id){
+        boolean valid = false;
+        valid = validationService.intValidator(id, 0);
+
+        if(valid){
+            GameDTO gamedto = gameService.getGameById(id);
+            return ResponseEntity.ok(gamedto);
+        }
+        return null;
+    }
 }
