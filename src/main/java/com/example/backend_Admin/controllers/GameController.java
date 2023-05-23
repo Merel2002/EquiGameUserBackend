@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000") //dit moet naar de andere backend...
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/apiUser")
 public class GameController {
