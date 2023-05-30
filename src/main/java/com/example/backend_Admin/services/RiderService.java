@@ -23,7 +23,7 @@ public class RiderService {
 
     public List<RiderDTO> getAllRiders(){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/riders";
+        String url = "http://localhost:9090/userAPI/riders";
         List<RiderDTO> riders = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<RiderDTO>>() {})
                 .getBody();
 
@@ -32,14 +32,14 @@ public class RiderService {
 
     public boolean addRider(CreateRiderDTO riderDTO) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/addRider";
+        String url = "http://localhost:9090/userAPI/riders";
         ResponseEntity<Boolean> response = restTemplate.postForEntity(url, riderDTO, Boolean.class);
         return response.getBody();
     }
 
     public RiderDTO getRiderById(int id) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/rider/"+ id;
+        String url = "http://localhost:9090/userAPI/riders/id/"+ id;
         RiderDTO rider = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<RiderDTO>() {})
                 .getBody();
 
@@ -48,7 +48,7 @@ public class RiderService {
 
     public RiderDTO getRiderByName(String name) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/riderName/"+ name;
+        String url = "http://localhost:9090/userAPI/riders/name/"+ name;
         RiderDTO rider = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<RiderDTO>() {})
                 .getBody();
 
@@ -59,7 +59,7 @@ public class RiderService {
     public boolean updateRider (RiderDTO riderDTO)
     {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/updateRider" ;
+        String url = "http://localhost:9090/userAPI/riders" ;
         ResponseEntity<Boolean> response = restTemplate.exchange(
                 url,
                 HttpMethod.PUT,
@@ -70,7 +70,7 @@ public class RiderService {
 
     public String deleteRiderById(int id){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/deleteRider/" + id;
+        String url = "http://localhost:9090/userAPI/riders/" + id;
         ResponseEntity<String> response = restTemplate.exchange(
                 url,
                 HttpMethod.DELETE,

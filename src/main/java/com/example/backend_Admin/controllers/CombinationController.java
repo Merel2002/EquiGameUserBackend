@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/apiUser")
+@RequestMapping("/userAPI")
 public class CombinationController {
     @Autowired
     private CombinationService combinationService;
@@ -18,15 +18,15 @@ public class CombinationController {
     @GetMapping("/combinations")
     public List<CombinationDTO> getAllCombination(){ return combinationService.getAllCombinations(); }
 
-    @PostMapping("/addCombinations")
+    @PostMapping("/combinations")
     public boolean addCombination(@RequestBody CombinationDTO combination){ return combinationService.createCombination(combination); }
 
-    @GetMapping("/combination/{id}")
+    @GetMapping("/combinations/id/{id}")
     public List<CombinationDTO> getCombinationByUserId(@PathVariable int id){
         List<CombinationDTO> cobination = combinationService.getCombinationByUserId(id);
         return cobination;
     }
 
-    @DeleteMapping("/deleteCombination/{id}")
+    @DeleteMapping("/combinations/{id}")
     public String deleteCombinationById(@PathVariable int id){ return combinationService.deleteCombinationById(id); }
 }

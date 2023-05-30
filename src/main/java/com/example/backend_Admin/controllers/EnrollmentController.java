@@ -11,7 +11,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/apiUser")
+@RequestMapping("/userAPI")
 public class EnrollmentController {
     @Autowired
     private EnrollmentService enrollmentService;
@@ -30,7 +30,7 @@ public class EnrollmentController {
         return ResponseEntity.ok(enrollmentDTOS);
     }
 
-    @PostMapping("/addEnrollment")
+    @PostMapping("/enrollments")
     public boolean addEnrollment(@RequestBody EnrollmentDTO enrollmentDTO){
         boolean valid1 = false;
         boolean valid2 = false;
@@ -47,7 +47,7 @@ public class EnrollmentController {
     }
 
 
-    @PutMapping("/updateEnrollment")
+    @PutMapping("/enrollments")
     public boolean updateEnrollment(@RequestBody EnrollmentDTO enrollmentDTO){
         boolean valid1 = false;
         boolean valid2 = false;
@@ -65,7 +65,7 @@ public class EnrollmentController {
         return valid;
     }
 
-    @DeleteMapping("/deleteEnrollment/{id}")
+    @DeleteMapping("/enrollment/{id}")
     public String deleteEnrollmentById(@PathVariable int id){
         boolean valid = false;
         valid = validationService.intValidator(id, 0);

@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/apiUser")
+@RequestMapping("/userAPI")
 public class GameController {
     @Autowired
     private GameService gameService;
@@ -26,7 +26,7 @@ public class GameController {
         return ResponseEntity.ok(gameDTOS);
     }
 
-    @GetMapping("/gameid/{id}")
+    @GetMapping("/games/id/{id}")
     public ResponseEntity<GameDTO> getGameById(@PathVariable int id){
         boolean valid = false;
         valid = validationService.intValidator(id, 0);

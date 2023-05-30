@@ -16,7 +16,7 @@ public class EnrollmentService {
 
     public boolean addEnrollment(EnrollmentDTO enrollmentDTO){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/addEnrollment";
+        String url = "http://localhost:9090/userAPI/enrollments";
         ResponseEntity<Boolean> response = restTemplate.postForEntity(url, enrollmentDTO, Boolean.class);
         return response.getBody();
 
@@ -24,7 +24,7 @@ public class EnrollmentService {
 
     public List<EnrollmentDTO> getAllEnrollmentsByRiderId(int id){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/enrollments/user/"+ id;
+        String url = "http://localhost:9090/userAPI/enrollments/user/"+ id;
         List<EnrollmentDTO> enrollments = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<EnrollmentDTO>>() {})
                 .getBody();
 
@@ -33,7 +33,7 @@ public class EnrollmentService {
 
     public List<EnrollmentDTO> getAllEnrollments(){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/enrollments ";
+        String url = "http://localhost:9090/userAPI/enrollments ";
         List<EnrollmentDTO> enrollments = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<EnrollmentDTO>>() {})
                 .getBody();
 
@@ -43,7 +43,7 @@ public class EnrollmentService {
 
     public boolean updateEnrollment(EnrollmentDTO enrollmentDTO){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/updateEnrollment";
+        String url = "http://localhost:9090/userAPI/enrollments";
         ResponseEntity<Boolean> response = restTemplate.exchange(
                 url,
                 HttpMethod.PUT,
@@ -54,7 +54,7 @@ public class EnrollmentService {
 
     public String deleteEnrollmentById(int id){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/api/deleteEnrollment/" + id;
+        String url = "http://localhost:9090/userAPI/enrollments/" + id;
         ResponseEntity<String> response = restTemplate.exchange(
                 url,
                 HttpMethod.DELETE,

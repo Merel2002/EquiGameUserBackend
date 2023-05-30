@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/apiUser")
+@RequestMapping("/userAPI")
 public class HorseController {
     @Autowired
     private HorseService horseService;
@@ -18,13 +18,13 @@ public class HorseController {
     @GetMapping("/horses")
     public List<HorseDTO> getAllHorses(){ return horseService.getAllHorses(); }
 
-    @PostMapping("/addHorse")
+    @PostMapping("/horses")
     public boolean addHorse(@RequestBody HorseDTO horse){ return horseService.createHorse(horse); }
 
-    @GetMapping("/horse/{id}")
+    @GetMapping("/horses/id/{id}")
     public HorseDTO getHorseById(@PathVariable int id){ return horseService.getHorseById(id); }
 
-    @GetMapping("/horseName/{name}")
+    @GetMapping("/horses/name/{name}")
     public HorseDTO getHorseByName(@PathVariable String name){ return horseService.getHorseByName(name); }
 
 }
