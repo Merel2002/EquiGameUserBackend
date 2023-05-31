@@ -18,14 +18,14 @@ public class CombinationService {
 
     public boolean createCombination(CombinationDTO combination){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/combinations";
+        String url = "http://localhost:9090/adminAPI/combinations";
         ResponseEntity<Boolean> response = restTemplate.postForEntity(url, combination, Boolean.class);
         return response.getBody();
     }
 
     public List<CombinationDTO> getAllCombinations(){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/combinations";
+        String url = "http://localhost:9090/adminAPI/combinations";
         List<CombinationDTO> combinations = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<CombinationDTO>>() {})
                 .getBody();
 
@@ -34,7 +34,7 @@ public class CombinationService {
 
     public List<CombinationDTO> getCombinationByUserId(int id){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/combinations/user/" + id;
+        String url = "http://localhost:9090/adminAPI/combinations/user/" + id;
         List<CombinationDTO> combinations = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<CombinationDTO>>() {})
                 .getBody();
 
@@ -44,7 +44,7 @@ public class CombinationService {
 
     public String deleteCombinationById(int id){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/combinations/" + id;
+        String url = "http://localhost:9090/adminAPI/combinations/" + id;
         ResponseEntity<String> response = restTemplate.exchange(
                 url,
                 HttpMethod.DELETE,

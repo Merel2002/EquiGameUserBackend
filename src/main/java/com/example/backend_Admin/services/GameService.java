@@ -19,7 +19,7 @@ public class GameService {
 
     public List<GameDTO> getAllGamesFromAdminBackend(){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/games";
+        String url = "http://localhost:9090/adminAPI/games";
         List<GameDTO> games = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<GameDTO>>() {})
                 .getBody();
 
@@ -28,7 +28,7 @@ public class GameService {
 
     public GameDTO getGameById(int id) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/games/id/"+ id;
+        String url = "http://localhost:9090/adminAPI/games/id/"+ id;
         GameDTO game = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<GameDTO>() {})
                 .getBody();
 

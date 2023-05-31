@@ -65,7 +65,7 @@ public class EnrollmentController {
         return valid;
     }
 
-    @DeleteMapping("/enrollment/{id}")
+    @DeleteMapping("/enrollments/{id}")
     public String deleteEnrollmentById(@PathVariable int id){
         boolean valid = false;
         valid = validationService.intValidator(id, 0);

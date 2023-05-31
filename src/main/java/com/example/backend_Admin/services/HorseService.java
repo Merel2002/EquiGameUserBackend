@@ -19,14 +19,14 @@ public class HorseService{
 
     public boolean createHorse(HorseDTO horseDTO){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/horses";
+        String url = "http://localhost:9090/adminAPI/horses";
         ResponseEntity<Boolean> response = restTemplate.postForEntity(url, horseDTO, Boolean.class);
         return response.getBody();
     }
 
     public List<HorseDTO> getAllHorses(){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/horses";
+        String url = "http://localhost:9090/adminAPI/horses";
         List<HorseDTO> horses = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<List<HorseDTO>>() {})
                 .getBody();
 
@@ -35,7 +35,7 @@ public class HorseService{
 
     public HorseDTO getHorseById(int id){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/horses/id/"+ id;
+        String url = "http://localhost:9090/adminAPI/horses/id/"+ id;
         HorseDTO horse = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<HorseDTO>() {})
                 .getBody();
 
@@ -44,7 +44,7 @@ public class HorseService{
 
     public HorseDTO getHorseByName(String name){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9090/userAPI/horses/name/"+ name;
+        String url = "http://localhost:9090/adminAPI/horses/name/"+ name;
         HorseDTO horse = restTemplate.exchange(url, HttpMethod.GET, null, new ParameterizedTypeReference<HorseDTO>() {})
                 .getBody();
 
