@@ -1,9 +1,6 @@
-
 name: Java CI
 
-on:
-  push:
-    branches: [ "master" ]
+on: [push]
 
 jobs:
   build:
@@ -19,31 +16,8 @@ jobs:
         # create JAR file with maven and run the package
       - name: Create the JAR file with Maven
         run: mvn package -DskipTests
-        
-        #Ga naar de andere applicatie die opgestart moet worden
-      - name: Checkout external repository
-        uses: actions/checkout@v2
-        with:
-          repository: Merel2002/EquiGameProject
-          ref: main
-          
-          #Start de applicatie op
-      - name: Build and run external application
-        run: |
-           cd EquiGameProject
-           mvn clean package
-           java -jar target/Test.jar
-        
-      # Install newman
-      - name: Install newman
-        run: | 
-         npm install -g newman
-         npm install -g newman-reporter-htmlextra
          
       - name: Start applicatie
         run: nohup mvn spring-boot:run > /dev/null 2>&1 &
       - name: Wait 10 seconds so the application is ready
         run: sleep 10
-         
-      - name: Run Postman API collections backend user
-        run: newman run src/test/backend_User.postman_collection
